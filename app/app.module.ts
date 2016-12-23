@@ -4,31 +4,33 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
 // Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data-service';
+// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService }  from './in-memory-data-service';
 
 import { AppComponent }         from './app.component';
 // import { HeroDetailComponent }  from './hero-detail.component';
 // import { HeroesComponent }      from './heroes.component';
 // import { HeroService }          from './hero.service';
- import { AppRoutingModule }     from './app-routing.module';
+//  import { AppRoutingModule }     from './app-routing.module';
 
 import {PlaygroundComponent} from './playground.component';
 import {ClickerService} from './clicker.service';
+import { TimerComponent }      from './timer.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // AppRoutingModule
   ],
   declarations: [
     AppComponent,
     // DashboardComponent,
     // HeroDetailComponent,
     // HeroesComponent,
+    TimerComponent,
     PlaygroundComponent
   ],
   providers: [ ClickerService ],

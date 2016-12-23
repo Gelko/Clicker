@@ -8,20 +8,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var ClickerService = (function () {
-    function ClickerService() {
-        this.counter = 0;
+var core_1 = require('@angular/core');
+var TimerObservable_1 = require("rxjs/observable/TimerObservable");
+var TimerComponent = (function () {
+    function TimerComponent() {
+        this.ticks = 0;
     }
-    ClickerService.prototype.raiseCounter = function () {
-        this.counter = this.counter + 1;
-        return this.counter;
+    TimerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var timer = TimerObservable_1.TimerObservable.create(1000, 1000);
+        timer.subscribe(function (t) { return _this.ticks = t; });
     };
-    ClickerService = __decorate([
-        core_1.Injectable(), 
+    TimerComponent = __decorate([
+        core_1.Component({
+            selector: 'timer-component',
+            template: 'Time : {{ticks}}',
+        }), 
         __metadata('design:paramtypes', [])
-    ], ClickerService);
-    return ClickerService;
+    ], TimerComponent);
+    return TimerComponent;
 }());
-exports.ClickerService = ClickerService;
-//# sourceMappingURL=clicker.service.js.map
+exports.TimerComponent = TimerComponent;
+//# sourceMappingURL=timer.component.js.map

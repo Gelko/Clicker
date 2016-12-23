@@ -13,9 +13,10 @@ var clicker_service_1 = require("./clicker.service");
 var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
+        this.counter = 0;
     }
     PlaygroundComponent.prototype.tileClicked = function () {
-        this.clickerService.raiseCounter();
+        this.counter = this.clickerService.raiseCounter();
     };
     PlaygroundComponent = __decorate([
         core_1.Component({

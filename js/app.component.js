@@ -12,7 +12,6 @@ var core_1 = require('@angular/core');
 var hero_service_1 = require('./hero.service');
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = "Tour of Heroes";
     }
     AppComponent = __decorate([
         core_1.Component({

@@ -8,12 +8,14 @@ import {ClickerService} from "./clicker.service";
 
 export class PlaygroundComponent {
 
+    counter : number = 0;
+
     constructor(
         private clickerService: ClickerService
         ) {}
 
     tileClicked() : void {
-        this.clickerService.raiseCounter();
+        this.counter = this.clickerService.raiseCounter();
     }
 
 }
