@@ -19,7 +19,9 @@ var PlaygroundComponent = (function () {
     PlaygroundComponent.prototype.ngOnInit = function () {
         this.tiles = tilesData_1.TILES;
     };
-    PlaygroundComponent.prototype.tileClicked = function () {
+    PlaygroundComponent.prototype.tileClicked = function (tile) {
+        tile.active = !tile.active;
+        console.log("tile state: ", tile.active);
         this.counter = this.clickerService.raiseCounter();
     };
     PlaygroundComponent = __decorate([

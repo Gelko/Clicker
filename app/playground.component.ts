@@ -22,7 +22,9 @@ export class PlaygroundComponent implements OnInit {
         private clickerService: ClickerService
         ) {}
 
-    tileClicked() : void {
+    tileClicked(tile : Tile) : void {
+        tile.active = !tile.active;
+        console.log("tile state: ", tile.active);
         this.counter = this.clickerService.raiseCounter();
     }
 
