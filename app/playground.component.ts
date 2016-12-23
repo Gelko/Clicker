@@ -1,14 +1,22 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {ClickerService} from "./clicker.service";
+import {Tile} from "./tile";
+import {TILES} from "./tilesData";
 
 @Component ({
     selector: "playground",
-    templateUrl: "../templates/playground.component.html"
+    templateUrl: "../templates/playground.component.html",
+    styleUrls: ["../styles/playground.component.css","../styles/tile.css"]
 })
 
-export class PlaygroundComponent {
-
+export class PlaygroundComponent implements OnInit {
+    
+    tiles: Tile[];
     counter : number = 0;
+
+    ngOnInit() : void {
+        this.tiles = TILES;
+    }
 
     constructor(
         private clickerService: ClickerService

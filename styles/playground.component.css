@@ -1,0 +1,10 @@
+.playground {
+    width: 500px;
+    height: 500px;
+}
+
+.playground-tiles {
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+}

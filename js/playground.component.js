@@ -10,18 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var clicker_service_1 = require("./clicker.service");
+var tilesData_1 = require("./tilesData");
 var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
         this.counter = 0;
     }
+    PlaygroundComponent.prototype.ngOnInit = function () {
+        this.tiles = tilesData_1.TILES;
+    };
     PlaygroundComponent.prototype.tileClicked = function () {
         this.counter = this.clickerService.raiseCounter();
     };
     PlaygroundComponent = __decorate([
         core_1.Component({
             selector: "playground",
-            templateUrl: "../templates/playground.component.html"
+            templateUrl: "../templates/playground.component.html",
+            styleUrls: ["../styles/playground.component.css", "../styles/tile.css"]
         }), 
         __metadata('design:paramtypes', [clicker_service_1.ClickerService])
     ], PlaygroundComponent);
