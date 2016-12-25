@@ -18,11 +18,44 @@ var PlaygroundComponent = (function () {
     }
     PlaygroundComponent.prototype.ngOnInit = function () {
         this.tiles = tilesData_1.TILES;
+        this.selectedTilesIds = [];
+        var tile1 = this.getNotActiveTile();
+        tile1.active = true;
+        var tile2 = this.getNotActiveTile();
+        tile2.active = true;
+        var tile3 = this.getNotActiveTile();
+        tile3.active = true;
     };
     PlaygroundComponent.prototype.tileClicked = function (tile) {
-        tile.active = !tile.active;
-        console.log("tile state: ", tile.active);
-        this.counter = this.clickerService.raiseCounter();
+        if (tile.active) {
+            tile.active = false;
+            this.counter = this.clickerService.raiseCounter();
+            var nextActiveTile = this.getNotActiveTile();
+            nextActiveTile.active = true;
+            this.removeFromList(tile.id);
+        }
+    };
+    PlaygroundComponent.prototype.removeFromList = function (index) {
+        index = index - 1;
+        var value = this.selectedTilesIds.indexOf(index);
+        if (value !== -1) {
+            this.selectedTilesIds.splice(value, 1);
+        }
+    };
+    PlaygroundComponent.prototype.getNotActiveTile = function () {
+        var randomNr = this.getRandomIndex();
+        var tile = this.tiles[randomNr];
+        return tile;
+    };
+    PlaygroundComponent.prototype.getRandomIndex = function () {
+        var nr = Math.floor(Math.random() * 9);
+        if (this.selectedTilesIds.indexOf(nr) !== -1) {
+            return this.getRandomIndex();
+        }
+        else {
+            this.selectedTilesIds.push(nr);
+            return nr;
+        }
     };
     PlaygroundComponent = __decorate([
         core_1.Component({

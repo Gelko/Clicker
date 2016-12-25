@@ -12,12 +12,12 @@ var core_1 = require('@angular/core');
 var TimerObservable_1 = require("rxjs/observable/TimerObservable");
 var TimerComponent = (function () {
     function TimerComponent() {
-        this.ticks = 0;
+        this.ticks = 30;
     }
     TimerComponent.prototype.ngOnInit = function () {
         var _this = this;
         var timer = TimerObservable_1.TimerObservable.create(1000, 1000);
-        timer.subscribe(function (t) { return _this.ticks = t; });
+        timer.subscribe(function (t) { return _this.ticks = _this.ticks - 1; });
     };
     TimerComponent = __decorate([
         core_1.Component({
