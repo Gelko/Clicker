@@ -3,6 +3,9 @@ import {ClickerService} from "./clicker.service";
 import {Tile} from "./tile";
 import {TILES} from "./tilesData";
 
+import {Subscription} from "rxjs";
+import {TimerObservable} from "rxjs/observable/TimerObservable";
+
 @Component ({
     selector: "playground",
     templateUrl: "../templates/playground.component.html",
@@ -14,10 +17,14 @@ export class PlaygroundComponent implements OnInit {
     tiles: Tile[];
     selectedTilesIds: number[];
     counter : number = 0;
+    ticks = 30;
 
     ngOnInit() : void {
         this.tiles = TILES;
         this.selectedTilesIds = [];
+
+        let timer = TimerObservable.create(1000, 1000);
+        timer.subscribe(t => this.ticks = this.ticks - 1);
 
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
@@ -34,15 +41,22 @@ export class PlaygroundComponent implements OnInit {
         ) {}
 
     tileClicked(tile : Tile) : void {
-        if (tile.active)
+        if (this.ticks > 0)
         {
-            tile.active = false;
-            this.counter = this.clickerService.raiseCounter();
+            if (tile.active)
+            {
+                tile.active = false;
+                this.counter = this.clickerService.raiseCounter();
 
-            var nextActiveTile = this.getNotActiveTile();
-            nextActiveTile.active = true;
+                var nextActiveTile = this.getNotActiveTile();
+                nextActiveTile.active = true;
 
-            this.removeFromList(tile.id);
+                this.removeFromList(tile.id);
+            }
+        }
+        else
+        {
+            // this.timer2.unsubscribe();
         }
     }
 

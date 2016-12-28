@@ -1,6 +1,6 @@
 <h1>Clicker</h1>
 
-<div class="playground">
+<div class="section playground">
     <div class="playground-tiles">
         <div *ngFor="let tile of tiles">            
             <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)">
@@ -8,8 +8,8 @@
             </div>
         </div>
     </div>
-    <div style="width:200px; height:200px; border: 1px solid black;">
-        <h3>{{counter}}</h3>
-        <timer-component></timer-component>
-    </div>
+</div>
+<div class="section">
+    <h3>{{counter}}</h3>
+    <h3>{{ticks}}</h3>
 </div>

@@ -11,14 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var clicker_service_1 = require("./clicker.service");
 var tilesData_1 = require("./tilesData");
+var TimerObservable_1 = require("rxjs/observable/TimerObservable");
 var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
         this.counter = 0;
+        this.ticks = 30;
     }
     PlaygroundComponent.prototype.ngOnInit = function () {
+        var _this = this;
         this.tiles = tilesData_1.TILES;
         this.selectedTilesIds = [];
+        var timer = TimerObservable_1.TimerObservable.create(1000, 1000);
+        timer.subscribe(function (t) { return _this.ticks = _this.ticks - 1; });
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
         var tile2 = this.getNotActiveTile();
@@ -27,12 +32,16 @@ var PlaygroundComponent = (function () {
         tile3.active = true;
     };
     PlaygroundComponent.prototype.tileClicked = function (tile) {
-        if (tile.active) {
-            tile.active = false;
-            this.counter = this.clickerService.raiseCounter();
-            var nextActiveTile = this.getNotActiveTile();
-            nextActiveTile.active = true;
-            this.removeFromList(tile.id);
+        if (this.ticks > 0) {
+            if (tile.active) {
+                tile.active = false;
+                this.counter = this.clickerService.raiseCounter();
+                var nextActiveTile = this.getNotActiveTile();
+                nextActiveTile.active = true;
+                this.removeFromList(tile.id);
+            }
+        }
+        else {
         }
     };
     PlaygroundComponent.prototype.removeFromList = function (index) {

@@ -11,8 +11,9 @@ export class TimerComponent implements OnInit {
   ticks = 30;
 
   ngOnInit() {
-    let timer = TimerObservable.create(1000, 1000);
-    timer.subscribe(t => this.ticks = this.ticks - 1);
+    // let timer = TimerObservable.create(1000, 1000);
+    // timer.subscribe(t => this.ticks = this.ticks - 1);
   }
+
 
 }

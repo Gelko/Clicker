@@ -9,15 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var TimerObservable_1 = require("rxjs/observable/TimerObservable");
 var TimerComponent = (function () {
     function TimerComponent() {
         this.ticks = 30;
     }
     TimerComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        var timer = TimerObservable_1.TimerObservable.create(1000, 1000);
-        timer.subscribe(function (t) { return _this.ticks = _this.ticks - 1; });
+        // let timer = TimerObservable.create(1000, 1000);
+        // timer.subscribe(t => this.ticks = this.ticks - 1);
     };
     TimerComponent = __decorate([
         core_1.Component({
