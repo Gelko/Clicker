@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var clicker_service_1 = require("./clicker.service");
 var tilesData_1 = require("./tilesData");
-var TimerObservable_1 = require("rxjs/observable/TimerObservable");
+var Observable_1 = require("rxjs/Observable");
 var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
@@ -22,8 +22,17 @@ var PlaygroundComponent = (function () {
         var _this = this;
         this.tiles = tilesData_1.TILES;
         this.selectedTilesIds = [];
-        var timer = TimerObservable_1.TimerObservable.create(1000, 1000);
-        timer.subscribe(function (t) { return _this.ticks = _this.ticks - 1; });
+        var timer$ = new Observable_1.Observable(function (observer) {
+            var interval = setInterval(function () {
+                observer.next(_this.ticks--);
+            }, 1000);
+            return function () {
+                clearInterval(interval);
+            };
+        });
+        var unsub = timer$.count(function (value) { return value < 30; }).subscribe(function (value) { return console.log(value); });
+        // let timer = TimerObservable.create(1000, 1000);
+        // timer.subscribe(t => this.ticks = this.ticks - 1);
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
         var tile2 = this.getNotActiveTile();

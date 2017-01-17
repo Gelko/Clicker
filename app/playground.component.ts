@@ -4,7 +4,7 @@ import {Tile} from "./tile";
 import {TILES} from "./tilesData";
 
 import {Subscription} from "rxjs";
-import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {Observable} from "rxjs/Observable";
 
 @Component ({
     selector: "playground",
@@ -23,8 +23,20 @@ export class PlaygroundComponent implements OnInit {
         this.tiles = TILES;
         this.selectedTilesIds = [];
 
-        let timer = TimerObservable.create(1000, 1000);
-        timer.subscribe(t => this.ticks = this.ticks - 1);
+        let timer$ = new Observable(observer => {
+            let interval = setInterval(() => {
+                observer.next(this.ticks--);
+            }, 1000);
+
+            return () => {
+                clearInterval(interval);
+            }
+        });
+
+        let unsub = timer$.count(value => value < 30).subscribe(value => console.log(value));
+        
+        // let timer = TimerObservable.create(1000, 1000);
+        // timer.subscribe(t => this.ticks = this.ticks - 1);
 
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
@@ -56,7 +68,9 @@ export class PlaygroundComponent implements OnInit {
         }
         else
         {
-            // this.timer2.unsubscribe();
+
+            //TimerObservable.dispatch(this.ticks);
+            //timer.subscribe(t => this.ticks = this.ticks - 1).unsubscribe;
         }
     }
 
