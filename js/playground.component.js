@@ -12,6 +12,7 @@ var core_1 = require("@angular/core");
 var clicker_service_1 = require("./clicker.service");
 var tilesData_1 = require("./tilesData");
 var Observable_1 = require("rxjs/Observable");
+require("rxjs/Rx");
 var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
@@ -19,26 +20,8 @@ var PlaygroundComponent = (function () {
         this.ticks = 30;
     }
     PlaygroundComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.tiles = tilesData_1.TILES;
         this.selectedTilesIds = [];
-        var timer$ = new Observable_1.Observable(function (observer) {
-            var interval = setInterval(function () {
-                observer.next(_this.ticks--);
-            }, 1000);
-            return function () {
-                clearInterval(interval);
-            };
-        });
-        var unsub = timer$.count(function (value) { return value < 30; }).subscribe(function (value) { return console.log(value); });
-        // let timer = TimerObservable.create(1000, 1000);
-        // timer.subscribe(t => this.ticks = this.ticks - 1);
-        var tile1 = this.getNotActiveTile();
-        tile1.active = true;
-        var tile2 = this.getNotActiveTile();
-        tile2.active = true;
-        var tile3 = this.getNotActiveTile();
-        tile3.active = true;
     };
     PlaygroundComponent.prototype.tileClicked = function (tile) {
         if (this.ticks > 0) {
@@ -50,8 +33,6 @@ var PlaygroundComponent = (function () {
                 this.removeFromList(tile.id);
             }
         }
-        else {
-        }
     };
     PlaygroundComponent.prototype.removeFromList = function (index) {
         index = index - 1;
@@ -59,6 +40,23 @@ var PlaygroundComponent = (function () {
         if (value !== -1) {
             this.selectedTilesIds.splice(value, 1);
         }
+    };
+    PlaygroundComponent.prototype.start = function () {
+        var _this = this;
+        this.tiles = tilesData_1.TILES;
+        this.selectedTilesIds = [];
+        this.ticks = 30;
+        this.counter = 0;
+        //timer countdown
+        var timer$ = Observable_1.Observable.interval(1000).take(this.ticks);
+        var subs$ = timer$.subscribe(function (x) { return _this.ticks--; });
+        //
+        var tile1 = this.getNotActiveTile();
+        tile1.active = true;
+        var tile2 = this.getNotActiveTile();
+        tile2.active = true;
+        var tile3 = this.getNotActiveTile();
+        tile3.active = true;
     };
     PlaygroundComponent.prototype.getNotActiveTile = function () {
         var randomNr = this.getRandomIndex();

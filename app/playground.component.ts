@@ -3,8 +3,8 @@ import {ClickerService} from "./clicker.service";
 import {Tile} from "./tile";
 import {TILES} from "./tilesData";
 
-import {Subscription} from "rxjs";
 import {Observable} from "rxjs/Observable";
+import "rxjs/Rx";
 
 @Component ({
     selector: "playground",
@@ -22,30 +22,6 @@ export class PlaygroundComponent implements OnInit {
     ngOnInit() : void {
         this.tiles = TILES;
         this.selectedTilesIds = [];
-
-        let timer$ = new Observable(observer => {
-            let interval = setInterval(() => {
-                observer.next(this.ticks--);
-            }, 1000);
-
-            return () => {
-                clearInterval(interval);
-            }
-        });
-
-        let unsub = timer$.count(value => value < 30).subscribe(value => console.log(value));
-        
-        // let timer = TimerObservable.create(1000, 1000);
-        // timer.subscribe(t => this.ticks = this.ticks - 1);
-
-        var tile1 = this.getNotActiveTile();
-        tile1.active = true;
-
-        var tile2 = this.getNotActiveTile();
-        tile2.active = true;
-
-        var tile3 = this.getNotActiveTile();
-        tile3.active = true;
     }
 
     constructor(
@@ -66,12 +42,6 @@ export class PlaygroundComponent implements OnInit {
                 this.removeFromList(tile.id);
             }
         }
-        else
-        {
-
-            //TimerObservable.dispatch(this.ticks);
-            //timer.subscribe(t => this.ticks = this.ticks - 1).unsubscribe;
-        }
     }
 
     removeFromList(index : number) {
@@ -80,6 +50,28 @@ export class PlaygroundComponent implements OnInit {
         if (value !== -1) {
             this.selectedTilesIds.splice(value, 1);
         }
+    }
+
+    start() {
+        this.tiles = TILES;
+        this.selectedTilesIds = [];
+
+        this.ticks = 30;
+        this.counter = 0;
+
+        //timer countdown
+        let timer$ = Observable.interval(1000).take(this.ticks);
+        let subs$ = timer$.subscribe(x => this.ticks--);
+        //
+
+        var tile1 = this.getNotActiveTile();
+        tile1.active = true;
+
+        var tile2 = this.getNotActiveTile();
+        tile2.active = true;
+
+        var tile3 = this.getNotActiveTile();
+        tile3.active = true;
     }
 
     getNotActiveTile() : Tile {
