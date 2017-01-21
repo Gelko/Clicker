@@ -77,7 +77,7 @@ var PlaygroundComponent = (function () {
         core_1.Component({
             selector: "playground",
             templateUrl: "../templates/playground.component.html",
-            styleUrls: ["../styles/playground.component.css", "../styles/tile.css"]
+            styleUrls: ["../css/main.css"]
         }), 
         __metadata('design:paramtypes', [clicker_service_1.ClickerService])
     ], PlaygroundComponent);

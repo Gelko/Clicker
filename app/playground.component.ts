@@ -9,7 +9,7 @@ import "rxjs/Rx";
 @Component ({
     selector: "playground",
     templateUrl: "../templates/playground.component.html",
-    styleUrls: ["../styles/playground.component.css","../styles/tile.css"]
+    styleUrls: ["../css/main.css"]
 })
 
 export class PlaygroundComponent implements OnInit {

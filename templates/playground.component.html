@@ -1,11 +1,9 @@
 <h1>Clicker</h1>
 
-<div class="section playground">
+<div class="playground">
     <div class="playground-tiles">
         <div *ngFor="let tile of tiles">            
-            <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)">
-                {{tile.id}}
-            </div>
+            <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)"></div>
         </div>
     </div>
 </div>
