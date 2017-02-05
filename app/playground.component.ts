@@ -17,7 +17,8 @@ export class PlaygroundComponent implements OnInit {
     tiles: Tile[];
     selectedTilesIds: number[];
     counter : number = 0;
-    ticks = 30;
+    ticks : number;
+    countDown : number = 3;
 
     ngOnInit() : void {
         this.tiles = TILES;
@@ -52,18 +53,30 @@ export class PlaygroundComponent implements OnInit {
         }
     }
 
+    raise = function() {
+        console.log('done');
+    }
+
     start() {
+
         this.tiles = TILES;
         this.selectedTilesIds = [];
 
         this.ticks = 30;
         this.counter = 0;
+        this.countDown = 3;
 
-        //timer countdown
-        let timer$ = Observable.interval(1000).take(this.ticks);
-        let subs$ = timer$.subscribe(x => this.ticks--);
-        //
+        //start countdown
+        let startObs$ = new Observable(observer => {
+        })
 
+        // let timer$ = Observable.interval(1000).take(this.ticks);
+        // let subs$ = timer$.subscribe(x => this.ticks--);        
+    }
+
+    startPlay()
+    {
+        //random select first 3 tiles
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
 
@@ -72,6 +85,7 @@ export class PlaygroundComponent implements OnInit {
 
         var tile3 = this.getNotActiveTile();
         tile3.active = true;
+        //
     }
 
     getNotActiveTile() : Tile {

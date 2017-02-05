@@ -12,17 +12,11 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-// Imports for loading & configuring the in-memory web api
-// import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-// import { InMemoryDataService }  from './in-memory-data-service';
 var app_component_1 = require('./app.component');
-// import { HeroDetailComponent }  from './hero-detail.component';
-// import { HeroesComponent }      from './heroes.component';
-// import { HeroService }          from './hero.service';
-//  import { AppRoutingModule }     from './app-routing.module';
 var playground_component_1 = require('./playground.component');
 var clicker_service_1 = require('./clicker.service');
 var timer_component_1 = require('./timer.component');
+var footer_component_1 = require('./footer.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,15 +25,13 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
-                http_1.HttpModule,
+                http_1.HttpModule
             ],
             declarations: [
                 app_component_1.AppComponent,
-                // DashboardComponent,
-                // HeroDetailComponent,
-                // HeroesComponent,
                 timer_component_1.TimerComponent,
-                playground_component_1.PlaygroundComponent
+                playground_component_1.PlaygroundComponent,
+                footer_component_1.FooterComponent
             ],
             providers: [clicker_service_1.ClickerService],
             bootstrap: [app_component_1.AppComponent]

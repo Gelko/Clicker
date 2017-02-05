@@ -1,14 +1,18 @@
-<h1>Clicker</h1>
-
-<div class="playground">
-    <div class="playground-tiles">
-        <div *ngFor="let tile of tiles">            
-            <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)"></div>
-        </div>
+<div class="flex-container">
+    <div class="flex-item">-->
+        <div class="playground-tiles">
+            <div *ngFor="let tile of tiles">            
+                <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)"></div>
+            </div>  
+            <div>
+                <h3>{{startCountDown}}</h3>
+                <h3>{{counter}}</h3>
+                <h3>{{ticks}}</h3>
+            </div>
+            <button (click)="start()">Reset</button>
+          </div>
     </div>
 </div>
-<div class="section">
-    <h3>{{counter}}</h3>
-    <h3>{{ticks}}</h3>
-</div>
-<button (click)="start()">Reset</button>
+
+
+

@@ -17,7 +17,7 @@ var PlaygroundComponent = (function () {
     function PlaygroundComponent(clickerService) {
         this.clickerService = clickerService;
         this.counter = 0;
-        this.ticks = 30;
+        this.countDown = 3;
     }
     PlaygroundComponent.prototype.ngOnInit = function () {
         this.tiles = tilesData_1.TILES;
@@ -41,22 +41,34 @@ var PlaygroundComponent = (function () {
             this.selectedTilesIds.splice(value, 1);
         }
     };
+    PlaygroundComponent.prototype.raise = function () {
+    };
     PlaygroundComponent.prototype.start = function () {
-        var _this = this;
         this.tiles = tilesData_1.TILES;
         this.selectedTilesIds = [];
         this.ticks = 30;
         this.counter = 0;
-        //timer countdown
-        var timer$ = Observable_1.Observable.interval(1000).take(this.ticks);
-        var subs$ = timer$.subscribe(function (x) { return _this.ticks--; });
-        //
+        this.countDown = 3;
+        //start countdown
+        var startObs$ = new Observable_1.Observable(function (observer) {
+            setTimeout(function () { observer.next(3); }, 1000);
+            setTimeout(function () { observer.next(2); }, 2000);
+            setTimeout(function () { observer.next(1); }, 3000);
+            setTimeout(function () { observer.complete(); }, 10000);
+        });
+        var subs$ = startObs$.subscribe(function (x) { return console.log(x); }, function (err) { return console.log(err); }, function () { return console.log('done'); });
+        // let timer$ = Observable.interval(1000).take(this.ticks);
+        // let subs$ = timer$.subscribe(x => this.ticks--);        
+    };
+    PlaygroundComponent.prototype.startPlay = function () {
+        //random select first 3 tiles
         var tile1 = this.getNotActiveTile();
         tile1.active = true;
         var tile2 = this.getNotActiveTile();
         tile2.active = true;
         var tile3 = this.getNotActiveTile();
         tile3.active = true;
+        //
     };
     PlaygroundComponent.prototype.getNotActiveTile = function () {
         var randomNr = this.getRandomIndex();
