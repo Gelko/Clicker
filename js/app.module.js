@@ -14,7 +14,8 @@ var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_component_1 = require('./app.component');
 var playground_component_1 = require('./playground.component');
-var clicker_service_1 = require('./clicker.service');
+var counter_component_1 = require('./counter.component');
+var tiles_component_1 = require('./tiles.component');
 var timer_component_1 = require('./timer.component');
 var footer_component_1 = require('./footer.component');
 var AppModule = (function () {
@@ -31,9 +32,10 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 timer_component_1.TimerComponent,
                 playground_component_1.PlaygroundComponent,
-                footer_component_1.FooterComponent
+                footer_component_1.FooterComponent,
+                tiles_component_1.TilesComponent
             ],
-            providers: [clicker_service_1.ClickerService],
+            providers: [counter_component_1.CounterComponent, tiles_component_1.TilesComponent, timer_component_1.TimerComponent],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

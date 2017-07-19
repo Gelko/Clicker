@@ -3,11 +3,12 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 
-import { AppComponent }         from './app.component';
+import { AppComponent } from './app.component';
 
 import {PlaygroundComponent} from './playground.component';
-import {ClickerService} from './clicker.service';
-import { TimerComponent }      from './timer.component';
+import {CounterComponent} from './counter.component';
+import {TilesComponent} from './tiles.component';
+import {TimerComponent }      from './timer.component';
 import {FooterComponent} from './footer.component';
 
 @NgModule({
@@ -20,9 +21,10 @@ import {FooterComponent} from './footer.component';
     AppComponent,
     TimerComponent,
     PlaygroundComponent,
-    FooterComponent
+    FooterComponent,
+    TilesComponent
   ],
-  providers: [ ClickerService ],
+  providers: [ CounterComponent, TilesComponent, TimerComponent ],
   bootstrap: [ AppComponent ]
 })
 

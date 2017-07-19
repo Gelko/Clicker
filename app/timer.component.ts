@@ -1,19 +1,42 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Subscription} from "rxjs";
-import {TimerObservable} from "rxjs/observable/TimerObservable";
+import {Component, OnInit, OnDestroy, Injectable} from '@angular/core';
+import {Observable} from "rxjs/Observable";
+import "rxjs/Rx";
 
 @Component({
   selector: 'timer-component',
-  template: 'Time : {{ticks}}',
+  template: 'Time : {{initRemainingTime}}',
 })
-export class TimerComponent implements OnInit {
 
-  ticks = 30;
+@Injectable()
+export class TimerComponent implements OnInit {
+      
+  private initRemainingTime = 30;
+  currentRemainingTime : number;
+  private subscription$;
+  private timer$;
 
   ngOnInit() {
-    // let timer = TimerObservable.create(1000, 1000);
-    // timer.subscribe(t => this.ticks = this.ticks - 1);
+      this.timer$ = Observable.interval(1000).take(this.initRemainingTime);
+      //let timer$ = Observable.interval(1000).take(this.initRemainingTime);
+      //this.subscription$ = this.timer$.subscribe(x => this.initRemainingTime--);   
   }
 
+  start() : void {
+    //let timer$ = Observable.interval(1000).take(this.initRemainingTime);
+    //this.currentRemainingTime = this.initRemainingTime;
+
+    this.timer$ = Observable.interval(1000).take(this.initRemainingTime);
+    this.subscription$ = this.timer$.subscribe(x => this.initRemainingTime--);   
+  }
+
+  restart() {
+    // this.subscription$.unsubscribe();
+    // this.currentRemainingTime = this.initRemainingTime;
+    // this.subscription$ = this.timer$.subscribe(x => this.currentRemainingTime--);   
+  }
+
+  getRemainingTime() : number {
+    return this.currentRemainingTime;
+  }
 
 }

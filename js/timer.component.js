@@ -9,19 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Observable_1 = require("rxjs/Observable");
+require("rxjs/Rx");
 var TimerComponent = (function () {
     function TimerComponent() {
-        this.ticks = 30;
+        this.initRemainingTime = 30;
     }
     TimerComponent.prototype.ngOnInit = function () {
-        // let timer = TimerObservable.create(1000, 1000);
-        // timer.subscribe(t => this.ticks = this.ticks - 1);
+        this.timer$ = Observable_1.Observable.interval(1000).take(this.initRemainingTime);
+        //let timer$ = Observable.interval(1000).take(this.initRemainingTime);
+        //this.subscription$ = this.timer$.subscribe(x => this.initRemainingTime--);   
+    };
+    TimerComponent.prototype.start = function () {
+        //let timer$ = Observable.interval(1000).take(this.initRemainingTime);
+        //this.currentRemainingTime = this.initRemainingTime;
+        var _this = this;
+        this.timer$ = Observable_1.Observable.interval(1000).take(this.initRemainingTime);
+        this.subscription$ = this.timer$.subscribe(function (x) { return _this.initRemainingTime--; });
+    };
+    TimerComponent.prototype.restart = function () {
+        // this.subscription$.unsubscribe();
+        // this.currentRemainingTime = this.initRemainingTime;
+        // this.subscription$ = this.timer$.subscribe(x => this.currentRemainingTime--);   
+    };
+    TimerComponent.prototype.getRemainingTime = function () {
+        return this.currentRemainingTime;
     };
     TimerComponent = __decorate([
         core_1.Component({
             selector: 'timer-component',
-            template: 'Time : {{ticks}}',
-        }), 
+            template: 'Time : {{initRemainingTime}}',
+        }),
+        core_1.Injectable(), 
         __metadata('design:paramtypes', [])
     ], TimerComponent);
     return TimerComponent;

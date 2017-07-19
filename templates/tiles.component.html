@@ -1,0 +1,4 @@
+<div *ngFor="let tile of tiles">            
+    <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)"></div>
+</div>  
+            

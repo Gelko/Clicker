@@ -1,15 +1,13 @@
 <div class="flex-container">
-    <div class="flex-item">-->
+    <div class="flex-item">
         <div class="playground-tiles">
-            <div *ngFor="let tile of tiles">            
-                <div [class.selected]="tile.active === true" class="tile" (click)="tileClicked(tile)"></div>
-            </div>  
+            <tiles></tiles> 
             <div>
-                <h3>{{startCountDown}}</h3>
-                <h3>{{counter}}</h3>
-                <h3>{{ticks}}</h3>
+                <!-- <h3><counter></counter></h3> -->
+                <h3><timer-component></timer-component></h3> 
             </div>
-            <button (click)="start()">Reset</button>
+            <button (click)="start()">Start</button>
+            <button (click)="restart()">Restart</button>
           </div>
     </div>
 </div>
