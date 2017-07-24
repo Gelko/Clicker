@@ -22,7 +22,8 @@ import {FooterComponent} from './footer.component';
     TimerComponent,
     PlaygroundComponent,
     FooterComponent,
-    TilesComponent
+    TilesComponent,
+    CounterComponent
   ],
   providers: [ CounterComponent, TilesComponent, TimerComponent ],
   bootstrap: [ AppComponent ]

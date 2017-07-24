@@ -1,6 +1,4 @@
-import {Component, OnInit} from "@angular/core";
-import {CounterComponent} from "./counter.component";
-import {TimerComponent} from "./timer.component";
+import {Component, OnInit, EventEmitter, Output} from "@angular/core";
 import {Tile} from "./tile";
 
 @Component ({
@@ -10,6 +8,8 @@ import {Tile} from "./tile";
 })
 
 export class TilesComponent implements OnInit {
+    
+    @Output() onTileClicked = new EventEmitter<Tile>();
 
     numberOfTiles : number = 9;
     tiles: Tile[];
@@ -19,18 +19,11 @@ export class TilesComponent implements OnInit {
         this.tiles = this.initTiles(this.numberOfTiles);
     }
 
-    constructor (
-        private counterComponent: CounterComponent,
-        private timerComponent: TimerComponent) {};
+    constructor () {};
 
-    start() {
-        
+    start() {        
         this.tiles = this.initTiles(this.numberOfTiles)
         this.selectedTilesIds = [];
-
-        //this.counterComponent.start();
-        this.timerComponent.start();
-
         this.setRandomTiles();
     }
 
@@ -46,15 +39,15 @@ export class TilesComponent implements OnInit {
         return tiles;
     }
 
-    tileClicked(tile : Tile) {
-        
-        if (this.timerComponent.getRemainingTime() > 0 && tile.active) {
-            this.counterComponent.raiseCounter();
-            tile.active = false;
-            var nextActiveTile = this.getNotActiveTile();
-            nextActiveTile.active = true;
-            this.removeFromList(tile.id);
-        }
+    tileClicked(tile : Tile) {        
+        this.onTileClicked.emit(tile);
+    }
+
+    setAnotherTile(tile: Tile) {
+        tile.active = false;
+        var nextActiveTile = this.getNotActiveTile();
+        nextActiveTile.active = true;
+        this.removeFromList(tile.id);
     }
 
     private setRandomTiles()
@@ -87,7 +80,7 @@ export class TilesComponent implements OnInit {
 
     getRandomIndex() : number {
 
-        var nr = Math.floor(Math.random() * 9); 
+        var nr = Math.floor(Math.random() * this.numberOfTiles); 
 
         if (this.selectedTilesIds.indexOf(nr) !== -1) {
             return this.getRandomIndex();

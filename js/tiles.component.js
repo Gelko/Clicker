@@ -9,12 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var counter_component_1 = require("./counter.component");
-var timer_component_1 = require("./timer.component");
 var TilesComponent = (function () {
-    function TilesComponent(counterComponent, timerComponent) {
-        this.counterComponent = counterComponent;
-        this.timerComponent = timerComponent;
+    function TilesComponent() {
+        this.onTileClicked = new core_1.EventEmitter();
         this.numberOfTiles = 9;
     }
     TilesComponent.prototype.ngOnInit = function () {
@@ -24,8 +21,6 @@ var TilesComponent = (function () {
     TilesComponent.prototype.start = function () {
         this.tiles = this.initTiles(this.numberOfTiles);
         this.selectedTilesIds = [];
-        //this.counterComponent.start();
-        this.timerComponent.start();
         this.setRandomTiles();
     };
     TilesComponent.prototype.initTiles = function (nrOfTiles) {
@@ -37,13 +32,13 @@ var TilesComponent = (function () {
         return tiles;
     };
     TilesComponent.prototype.tileClicked = function (tile) {
-        if (this.timerComponent.getRemainingTime() > 0 && tile.active) {
-            this.counterComponent.raiseCounter();
-            tile.active = false;
-            var nextActiveTile = this.getNotActiveTile();
-            nextActiveTile.active = true;
-            this.removeFromList(tile.id);
-        }
+        this.onTileClicked.emit(tile);
+    };
+    TilesComponent.prototype.setAnotherTile = function (tile) {
+        tile.active = false;
+        var nextActiveTile = this.getNotActiveTile();
+        nextActiveTile.active = true;
+        this.removeFromList(tile.id);
     };
     TilesComponent.prototype.setRandomTiles = function () {
         //random select first 3 tiles
@@ -67,7 +62,7 @@ var TilesComponent = (function () {
         return tile;
     };
     TilesComponent.prototype.getRandomIndex = function () {
-        var nr = Math.floor(Math.random() * 9);
+        var nr = Math.floor(Math.random() * this.numberOfTiles);
         if (this.selectedTilesIds.indexOf(nr) !== -1) {
             return this.getRandomIndex();
         }
@@ -76,13 +71,17 @@ var TilesComponent = (function () {
             return nr;
         }
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TilesComponent.prototype, "onTileClicked", void 0);
     TilesComponent = __decorate([
         core_1.Component({
             selector: "tiles",
             templateUrl: "../templates/tiles.component.html",
             styleUrls: ["../css/main.css"]
         }), 
-        __metadata('design:paramtypes', [counter_component_1.CounterComponent, timer_component_1.TimerComponent])
+        __metadata('design:paramtypes', [])
     ], TilesComponent);
     return TilesComponent;
 }());

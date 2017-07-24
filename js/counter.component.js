@@ -13,6 +13,8 @@ var CounterComponent = (function () {
     function CounterComponent() {
         this.counter = 0;
     }
+    CounterComponent.prototype.ngOnInit = function () {
+    };
     CounterComponent.prototype.raiseCounter = function () {
         this.counter = this.counter + 1;
         return this.counter;
@@ -20,9 +22,12 @@ var CounterComponent = (function () {
     CounterComponent.prototype.start = function () {
         this.counter = 0;
     };
+    CounterComponent.prototype.getCounter = function () {
+        return this.counter;
+    };
     CounterComponent = __decorate([
         core_1.Component({
-            selector: "counter",
+            selector: "counter-component",
             template: "Hits: {{counter}}"
         }), 
         __metadata('design:paramtypes', [])

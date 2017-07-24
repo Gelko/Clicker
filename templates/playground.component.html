@@ -1,13 +1,13 @@
 <div class="flex-container">
     <div class="flex-item">
         <div class="playground-tiles">
-            <tiles></tiles> 
+            <tiles (onTileClicked)="onTileClicked($event)"></tiles> 
             <div>
-                <!-- <h3><counter></counter></h3> -->
-                <h3><timer-component></timer-component></h3> 
+                <h3><timer-component (onTimerExpired)="onTimerExpired($event)"></timer-component></h3> 
+                <h3><counter-component></counter-component></h3> 
             </div>
-            <button (click)="start()">Start</button>
-            <button (click)="restart()">Restart</button>
+            <button (click)='start()' [disabled]="gameInProgress">Start</button>
+            <button (click)='restart()' [disabled]="!gameInProgress">Restart</button>
           </div>
     </div>
 </div>

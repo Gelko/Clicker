@@ -33,7 +33,8 @@ var AppModule = (function () {
                 timer_component_1.TimerComponent,
                 playground_component_1.PlaygroundComponent,
                 footer_component_1.FooterComponent,
-                tiles_component_1.TilesComponent
+                tiles_component_1.TilesComponent,
+                counter_component_1.CounterComponent
             ],
             providers: [counter_component_1.CounterComponent, tiles_component_1.TilesComponent, timer_component_1.TimerComponent],
             bootstrap: [app_component_1.AppComponent]
