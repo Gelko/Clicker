@@ -20,18 +20,21 @@ export class TimerComponent implements OnInit {
   }
 
   start() : void {
+    
+    if (this.subscription$) {
+      this.subscription$.unsubscribe();
+    }
+
+    this.initRemainingTime = 30;
     this.timer$ = Observable.interval(1000).take(this.initRemainingTime);
     this.subscription$ = this.timer$.finally(() => this.timerFinished()).subscribe(x => this.initRemainingTime--);   
   }
 
-  restart() {
-    this.subscription$.unsubscribe();
-    this.initRemainingTime = 30;
-    this.subscription$ = this.timer$.subscribe(x => this.initRemainingTime--);   
-  }
-
   timerFinished() {
-    this.onTimerExpired.emit();
+    if (this.initRemainingTime == 0)
+    {
+        this.onTimerExpired.emit();
+    }    
   }
 
   isTimeExpired() : boolean {

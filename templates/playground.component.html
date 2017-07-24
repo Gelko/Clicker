@@ -7,7 +7,7 @@
                 <h3><counter-component></counter-component></h3> 
             </div>
             <button (click)='start()' [disabled]="gameInProgress">Start</button>
-            <button (click)='restart()' [disabled]="!gameInProgress">Restart</button>
+            <button (click)='start()' [disabled]="!gameInProgress">Restart</button>
           </div>
     </div>
 </div>

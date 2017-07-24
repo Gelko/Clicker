@@ -50,10 +50,4 @@ export class PlaygroundComponent implements OnInit {
         }
     }
 
-    restart() {
-        this.tilesComponent.start();
-        this.timerComponent.restart();
-        this.counterComponent.start();
-    }
-
 }

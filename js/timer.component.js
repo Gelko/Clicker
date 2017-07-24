@@ -21,17 +21,17 @@ var TimerComponent = (function () {
     };
     TimerComponent.prototype.start = function () {
         var _this = this;
+        if (this.subscription$) {
+            this.subscription$.unsubscribe();
+        }
+        this.initRemainingTime = 30;
         this.timer$ = Observable_1.Observable.interval(1000).take(this.initRemainingTime);
         this.subscription$ = this.timer$.finally(function () { return _this.timerFinished(); }).subscribe(function (x) { return _this.initRemainingTime--; });
     };
-    TimerComponent.prototype.restart = function () {
-        var _this = this;
-        this.subscription$.unsubscribe();
-        this.initRemainingTime = 30;
-        this.subscription$ = this.timer$.subscribe(function (x) { return _this.initRemainingTime--; });
-    };
     TimerComponent.prototype.timerFinished = function () {
-        this.onTimerExpired.emit();
+        if (this.initRemainingTime == 0) {
+            this.onTimerExpired.emit();
+        }
     };
     TimerComponent.prototype.isTimeExpired = function () {
         return this.initRemainingTime == 0;

@@ -37,11 +37,6 @@ var PlaygroundComponent = (function () {
             this.counterComponent.raiseCounter();
         }
     };
-    PlaygroundComponent.prototype.restart = function () {
-        this.tilesComponent.start();
-        this.timerComponent.restart();
-        this.counterComponent.start();
-    };
     __decorate([
         core_1.ViewChild(tiles_component_1.TilesComponent), 
         __metadata('design:type', tiles_component_1.TilesComponent)
