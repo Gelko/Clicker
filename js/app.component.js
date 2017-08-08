@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-// import { HeroService} from './hero.service';
 var AppComponent = (function () {
     function AppComponent() {
     }
     AppComponent = __decorate([
         core_1.Component({
             selector: "my-app",
-            templateUrl: "../templates/app.component.html"
+            templateUrl: "../templates/app.component.html",
+            styleUrls: ["../css/app.css"]
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

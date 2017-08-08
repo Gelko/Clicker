@@ -53,7 +53,7 @@ var PlaygroundComponent = (function () {
         core_1.Component({
             selector: "playground",
             templateUrl: "../templates/playground.component.html",
-            styleUrls: ["../css/main.css"]
+            styleUrls: ["../css/playground.component.css"]
         }), 
         __metadata('design:paramtypes', [])
     ], PlaygroundComponent);

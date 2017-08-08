@@ -3,7 +3,7 @@
     <!--ESSENTIAL FOR ROUTING-->
     <!--We must add a <base href> element tag to the index.html to make pushState routing work. -->
     <base href="/"> 
-    <title>Tour of heroes</title>
+    <title>Clicker</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 1. Load libraries -->
@@ -18,10 +18,14 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="node_modules/bulma/css/bulma.css">
+    <!-- <link rel="stylesheet" href="node_modules/bulma/css/bulma.css"> -->
+    <!-- Bootstrap -->
+    <!-- <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="css/app.css" rel="stylesheet">
   </head>
   <!-- 3. Display the application -->
   <body>
-    <my-app>Loading...</my-app>
+    <my-app>Loading...</my-app>    
   </body>
+
 </html>

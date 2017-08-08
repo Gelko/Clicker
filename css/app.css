@@ -1,25 +1,3 @@
-.tile {
-  float: left;
-  width: 50px;
-  height: 50px;
-  background-color: green;
-  border: 1px solid black;
-  margin: 3px;
-  border-radius: 5px;
-}
-.selected {
-  background-color: red;
-}
-.playground-tiles {
-  width: 174px;
-  height: 174px;
-}
-.item {
-  float: left;
-}
-.panel {
-  padding-left: 1em;
-}
 .center {
   position: absolute;
   top: calc(50% - 87px);
@@ -37,7 +15,7 @@ body {
 }
 button {
   margin: 3px;
-  width: 174px;
+  width: 170px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-color: #8a8a8a;
