@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var TilesComponent = (function () {
     function TilesComponent() {
@@ -72,16 +73,16 @@ var TilesComponent = (function () {
         }
     };
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
+        core_1.Output(),
+        __metadata("design:type", Object)
     ], TilesComponent.prototype, "onTileClicked", void 0);
     TilesComponent = __decorate([
         core_1.Component({
             selector: "tiles",
             templateUrl: "../templates/tiles.component.html",
             styleUrls: ["../css/main.css"]
-        }), 
-        __metadata('design:paramtypes', [])
+        }),
+        __metadata("design:paramtypes", [])
     ], TilesComponent);
     return TilesComponent;
 }());

@@ -8,7 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = require("@angular/core");
 var Observable_1 = require("rxjs/Observable");
 require("rxjs/Rx");
 var TimerComponent = (function () {
@@ -37,15 +38,14 @@ var TimerComponent = (function () {
         return this.initRemainingTime == 0;
     };
     __decorate([
-        core_1.Output(), 
-        __metadata('design:type', Object)
+        core_1.Output(),
+        __metadata("design:type", Object)
     ], TimerComponent.prototype, "onTimerExpired", void 0);
     TimerComponent = __decorate([
         core_1.Component({
             selector: 'timer-component',
             template: 'Time : {{initRemainingTime}}',
-        }), 
-        __metadata('design:paramtypes', [])
+        })
     ], TimerComponent);
     return TimerComponent;
 }());

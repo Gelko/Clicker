@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var tiles_component_1 = require("./tiles.component");
 var timer_component_1 = require("./timer.component");
@@ -38,24 +39,24 @@ var PlaygroundComponent = (function () {
         }
     };
     __decorate([
-        core_1.ViewChild(tiles_component_1.TilesComponent), 
-        __metadata('design:type', tiles_component_1.TilesComponent)
+        core_1.ViewChild(tiles_component_1.TilesComponent),
+        __metadata("design:type", tiles_component_1.TilesComponent)
     ], PlaygroundComponent.prototype, "tilesComponent", void 0);
     __decorate([
-        core_1.ViewChild(timer_component_1.TimerComponent), 
-        __metadata('design:type', timer_component_1.TimerComponent)
+        core_1.ViewChild(timer_component_1.TimerComponent),
+        __metadata("design:type", timer_component_1.TimerComponent)
     ], PlaygroundComponent.prototype, "timerComponent", void 0);
     __decorate([
-        core_1.ViewChild(counter_component_1.CounterComponent), 
-        __metadata('design:type', counter_component_1.CounterComponent)
+        core_1.ViewChild(counter_component_1.CounterComponent),
+        __metadata("design:type", counter_component_1.CounterComponent)
     ], PlaygroundComponent.prototype, "counterComponent", void 0);
     PlaygroundComponent = __decorate([
         core_1.Component({
             selector: "playground",
             templateUrl: "../templates/playground.component.html",
             styleUrls: ["../css/playground.component.css"]
-        }), 
-        __metadata('design:paramtypes', [])
+        }),
+        __metadata("design:paramtypes", [])
     ], PlaygroundComponent);
     return PlaygroundComponent;
 }());
