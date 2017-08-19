@@ -2,14 +2,28 @@
 
 .tile {
     float: left;
-    width: @tileSize;
-    height: @tileSize;
+    width: @desktopTileSize;
+    height: @desktopTileSize;
     background-color: @tileColor;
-    border: 1px solid black;
     margin: @tileMargin;
-    border-radius: 5px;
+    border-radius: @borderRadius;
 }
 
 .selected {
     background-color:@tileSelected;
+}
+
+@media only screen and (max-width: 600px) {
+    .tile {
+        width: ~"calc(33% - 5px)";
+        height: ~"calc(33% - 5px)";
+    }
+}
+
+@media only screen and (max-height: 499px) {
+    .tile {
+        float: left;
+        width: ~"calc(33% - 5px)";
+        height: ~"calc(33% - 5px)";
+    }
 }
