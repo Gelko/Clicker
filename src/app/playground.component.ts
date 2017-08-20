@@ -39,7 +39,7 @@ export class PlaygroundComponent implements OnInit {
         this.gameInProgress = true;    
     }    
 
-    onTimerExpired() {
+    onTimerExpired($event) {
         this.gameInProgress = false;
     }
 

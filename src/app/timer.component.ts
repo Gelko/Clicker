@@ -11,7 +11,8 @@ export class TimerComponent implements OnInit {
       
   @Output() onTimerExpired = new EventEmitter();
 
-  private initRemainingTime = 30;
+  public initRemainingTime = 30;
+
   private subscription$;
   private timer$;
 
